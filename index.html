@@ -3,207 +3,366 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>207GAMES - Pro Card Roulette</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <title>Winna Games — Unified Multi-Mode Platform</title>
   <style>
     :root {
-      --bg-dark: #0a0e17;
-      --panel-dark: #141c2e;
-      --accent-gold: #eab308;
-      --gold-hover: #ca8a04;
-      --felt-green: #064e3b;
-      --felt-border: #047857;
-      --card-red: #dc2626;
-      --card-black: #1e293b;
-      --card-green: #16a34a;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --bg-dark: #070b12;
+      --panel-dark: #0f172a;
+      --panel-light: #1e293b;
+      --winna-green: #08421b;
+      --winna-green-mid: #0d5c27;
+      --winna-gold: #b08d44;
+      --gold-bright: #eab308;
+      --felt: #064e3b;
+      --felt-dark: #022c22;
+      --text: #f9fafb;
+      --muted: #9ca3af;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
       display: flex;
       justify-content: center;
       padding: 16px;
       min-height: 100vh;
     }
 
-    .casino-app {
+    .app-shell {
       width: 100%;
-      max-width: 860px;
+      max-width: 940px;
       background: var(--panel-dark);
+      border: 1px solid #334155;
       border-radius: 16px;
-      border: 1px solid #1e293b;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
       overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.8);
       display: flex;
       flex-direction: column;
     }
 
-    /* Top Bar - ALC iGaming Style */
-    .nav-header {
-      background: #0f172a;
-      padding: 14px 20px;
+    /* Top Header & Syndicated Jackpot */
+    .top-bar {
+      background: #04070d;
+      padding: 12px 20px;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 2px solid var(--accent-gold);
+      gap: 12px;
+      border-bottom: 2px solid var(--winna-gold);
     }
-    .brand-logo {
-      font-weight: 800;
-      font-size: 1.2rem;
-      letter-spacing: 0.5px;
-      color: var(--text-main);
-    }
-    .brand-logo span { color: var(--accent-gold); }
 
-    .jackpot-pill {
-      background: rgba(234, 179, 8, 0.1);
-      border: 1px solid var(--accent-gold);
-      padding: 6px 14px;
-      border-radius: 20px;
-      text-align: center;
-    }
-    .jackpot-label { font-size: 0.65rem; color: var(--accent-gold); font-weight: 700; text-transform: uppercase; }
-    .jackpot-val { font-size: 1rem; font-weight: 800; color: #fff; }
-
-    /* Account Stats Strip */
-    .account-bar {
-      background: #1e293b;
-      padding: 10px 20px;
+    .brand-lockup {
       display: flex;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-    .stat-item { display: flex; gap: 8px; align-items: center; }
-    .stat-label { color: var(--text-muted); }
-    .stat-value { color: #fff; font-weight: 700; }
-    .stat-value.gold { color: var(--accent-gold); }
-
-    /* Main Gaming Surface (Felt) */
-    .felt-table {
-      background: radial-gradient(circle, #065f46 0%, #022c22 100%);
-      padding: 24px;
-      border-bottom: 1px solid #1e293b;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      align-items: center;
-    }
-
-    /* Card Dealer Shoe Area */
-    .dealer-stage {
-      display: flex;
-      flex-direction: column;
       align-items: center;
       gap: 10px;
-    }
-    .card-slot {
-      width: 90px;
-      height: 126px;
-      background: #0f172a;
-      border: 3px solid var(--accent-gold);
+      background: #f3f4f6;
+      padding: 6px 14px;
       border-radius: 10px;
+      border: 2px solid var(--winna-gold);
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .brand-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--winna-green);
+      letter-spacing: 0.5px;
+    }
+    .brand-sub {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--winna-green);
+      letter-spacing: 3.5px;
+      margin-top: 2px;
+    }
+
+    .charity-select-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .charity-select-box select {
+      background: var(--panel-light);
+      color: #fff;
+      border: 1px solid #475569;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .jackpot-box {
+      background: rgba(176, 141, 68, 0.14);
+      border: 1px solid var(--winna-gold);
+      padding: 6px 16px;
+      border-radius: 999px;
+      text-align: right;
+    }
+    .jackpot-box .lbl { font-size: 0.65rem; color: var(--gold-bright); font-weight: 700; text-transform: uppercase; }
+    .jackpot-box .val { font-size: 1.05rem; font-weight: 800; color: #fff; }
+
+    /* Mode Switcher Tabs */
+    .mode-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: #0b1120;
+      border-bottom: 1px solid #334155;
+    }
+    .mode-tab {
+      padding: 12px 8px;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .mode-tab:hover { color: #fff; background: rgba(255,255,255,0.03); }
+    .mode-tab.active {
+      color: var(--gold-bright);
+      border-bottom-color: var(--gold-bright);
+      background: rgba(234, 179, 8, 0.08);
+    }
+
+    /* Account & Clearinghouse Strip */
+    .stats-bar {
+      background: var(--panel-light);
+      padding: 10px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.82rem;
+      border-bottom: 1px solid #334155;
+    }
+    .stat span.lbl { color: var(--muted); margin-right: 4px; }
+    .stat span.val { font-weight: 700; }
+    .stat span.gold { color: var(--gold-bright); }
+    .stat span.green { color: #34d399; }
+
+    /* Felt Table Stage */
+    .felt-stage {
+      background: radial-gradient(circle at center, var(--felt) 0%, var(--felt-dark) 100%);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .stage-display {
+      min-height: 224px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* Winna Custom Playing Card Back Pattern */
+    .winna-card-back {
+      background:
+        repeating-linear-gradient(45deg, rgba(176, 141, 68, 0.08) 0px, rgba(176, 141, 68, 0.08) 4px, transparent 4px, transparent 10px),
+        linear-gradient(145deg, #0b5323 0%, #052e13 100%);
+      border: 2px solid var(--winna-gold);
+      box-shadow: inset 0 0 0 3px #052e13, inset 0 0 0 4px rgba(234, 179, 8, 0.45), 0 10px 24px rgba(0,0,0,0.55);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .winna-card-back .card-back-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 800;
+      color: #f3e5ab;
+      letter-spacing: 0.8px;
+      margin-top: 3px;
+    }
+    .winna-card-back .card-back-sub {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      color: var(--winna-gold);
+      letter-spacing: 2px;
+    }
+
+    /* 1. Dealer Flip Card */
+    .dealer-card {
+      width: 112px;
+      height: 156px;
+      border-radius: 12px;
+      font-size: 2.2rem;
+      font-weight: 800;
+      transition: transform 0.15s;
+    }
+    .dealer-card.red { background: #450a0a; color: #f87171; border: 3px solid #ef4444; display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(0,0,0,0.55); }
+    .dealer-card.black { background: #0f172a; color: #38bdf8; border: 3px solid #38bdf8; display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(0,0,0,0.55); }
+    .dealer-card.green { background: #052e16; color: #4ade80; border: 3px solid #22c55e; display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(0,0,0,0.55); }
+    .dealer-card.gold { background: #451a03; color: var(--gold-bright); border: 3px solid var(--gold-bright); font-size: 1.25rem; text-align: center; display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(0,0,0,0.55); }
+
+    /* 2. Table Captain Spread */
+    .captain-badge {
+      background: rgba(234, 179, 8, 0.18);
+      border: 1px solid var(--gold-bright);
+      color: var(--gold-bright);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .captain-spread {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+      width: 100%;
+      max-width: 540px;
+    }
+    .pick-card {
+      height: 76px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+    .pick-card:hover { transform: translateY(-3px); border-color: var(--gold-bright); }
+    .pick-slot-num {
+      position: absolute;
+      bottom: 3px;
+      right: 5px;
+      font-size: 0.58rem;
+      font-weight: 700;
+      color: rgba(243, 229, 171, 0.75);
+    }
+    .pick-card.revealed-red { background: #450a0a; border: 2px solid #ef4444; color: #f87171; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; }
+    .pick-card.revealed-black { background: #0f172a; border: 2px solid #38bdf8; color: #38bdf8; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; }
+    .pick-card.revealed-green { background: #052e16; border: 2px solid #22c55e; color: #4ade80; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; }
+    .pick-card.revealed-gold { background: #451a03; border: 2px solid var(--gold-bright); color: var(--gold-bright); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; }
+
+    /* 3. Actual Roulette Wheel */
+    .wheel-wrap {
+      position: relative;
+      width: 240px;
+      height: 240px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.2rem;
-      font-weight: 800;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .card-slot.red { background: #450a0a; color: var(--card-red); border-color: var(--card-red); }
-    .card-slot.black { background: #0f172a; color: #38bdf8; border-color: #38bdf8; }
-    .card-slot.green { background: #022c22; color: var(--card-green); border-color: var(--card-green); }
+    .wheel-pointer {
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 16px solid var(--gold-bright);
+      z-index: 10;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.85));
+    }
 
-    .game-message {
+    .status-msg {
       font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--accent-gold);
-      height: 20px;
+      font-weight: 800;
+      color: var(--gold-bright);
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      text-align: center;
+      min-height: 22px;
     }
 
-    /* Betting Board Grid */
-    .betting-grid {
+    /* Betting Grid */
+    .bet-grid {
       width: 100%;
-      max-width: 720px;
+      max-width: 780px;
       display: grid;
-      grid-template-columns: 50px repeat(12, 1fr);
+      grid-template-columns: 62px repeat(12, 1fr);
       gap: 4px;
-      background: rgba(0,0,0,0.3);
+      background: rgba(0,0,0,0.35);
       padding: 10px;
       border-radius: 10px;
-      border: 1px solid var(--felt-border);
+      border: 1px solid rgba(255,255,255,0.15);
     }
-    .grid-cell {
-      background: rgba(15, 23, 42, 0.6);
+    .zero-col {
+      grid-row: span 3;
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 4px;
+    }
+    .cell {
+      background: rgba(15, 23, 42, 0.78);
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: 4px;
+      min-height: 38px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.8rem;
       font-weight: 700;
       cursor: pointer;
-      min-height: 40px;
-      transition: all 0.1s ease;
       position: relative;
+      transition: background 0.1s;
     }
-    .grid-cell:hover { background: rgba(234, 179, 8, 0.3); border-color: var(--accent-gold); }
-    .grid-cell.active { border: 2px solid var(--accent-gold); background: rgba(234, 179, 8, 0.25); }
-    .grid-cell.zero { grid-row: span 3; background: #064e3b; color: var(--card-green); font-size: 1.1rem; }
-    .grid-cell.red-num { color: #f87171; }
-    .grid-cell.blk-num { color: #38bdf8; }
-    
-    .outside-row {
-      grid-column: span 13;
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 4px;
-      margin-top: 4px;
-    }
-    .dozens-row {
+    .cell:hover { background: rgba(234, 179, 8, 0.25); border-color: var(--gold-bright); }
+    .cell.active { border: 2px solid var(--gold-bright); background: rgba(234, 179, 8, 0.25); }
+    .cell.c-zero { background: #065f46; color: #4ade80; }
+    .cell.c-winna { background: #451a03; color: var(--gold-bright); font-size: 0.65rem; letter-spacing: 0.3px; }
+    .cell.c-red { color: #f87171; }
+    .cell.c-blk { color: #38bdf8; }
+
+    .span-row-3 {
       grid-column: span 13;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 4px;
       margin-top: 4px;
     }
-
-    /* Bet Chip Counter Badge */
-    .chip-badge {
-      position: absolute;
-      top: -6px;
-      right: -6px;
-      background: var(--accent-gold);
-      color: #000;
-      border-radius: 10px;
-      font-size: 0.65rem;
-      padding: 2px 5px;
-      font-weight: 800;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    .span-row-6 {
+      grid-column: span 13;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 4px;
+      margin-top: 4px;
     }
 
-    /* Chip Control Bar */
-    .control-panel {
-      padding: 16px 20px;
-      background: #0f172a;
+    .chip-tag {
+      position: absolute;
+      top: -6px;
+      right: -5px;
+      background: var(--gold-bright);
+      color: #000;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 1px 5px;
+      border-radius: 999px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    }
+
+    /* Bottom Control Bar */
+    .controls-bar {
+      background: #04070d;
+      padding: 14px 20px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
     }
-    .chip-selector { display: flex; gap: 8px; align-items: center; }
-    .chip-btn {
-      width: 44px;
-      height: 44px;
+    .chips { display: flex; gap: 8px; }
+    .chip {
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       border: 3px dashed #fff;
       display: flex;
@@ -212,129 +371,265 @@
       font-size: 0.75rem;
       font-weight: 800;
       cursor: pointer;
-      transition: transform 0.1s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     }
-    .chip-btn:active { transform: scale(0.95); }
-    .chip-btn.selected { transform: scale(1.1); border-style: solid; box-shadow: 0 0 12px var(--accent-gold); }
-    .chip-5 { background: #2563eb; color: #fff; }
-    .chip-25 { background: #dc2626; color: #fff; }
-    .chip-100 { background: #16a34a; color: #fff; }
-    .chip-500 { background: #7c3aed; color: #fff; }
+    .chip.selected { transform: scale(1.12); border-style: solid; box-shadow: 0 0 12px var(--gold-bright); }
+    .ch-5 { background: #2563eb; }
+    .ch-25 { background: #dc2626; }
+    .ch-100 { background: #16a34a; }
+    .ch-500 { background: #7c3aed; }
 
-    .action-buttons { display: flex; gap: 10px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; }
     .btn {
-      padding: 12px 24px;
+      padding: 10px 18px;
       border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.9rem;
       border: none;
+      font-weight: 700;
+      font-size: 0.82rem;
       cursor: pointer;
       text-transform: uppercase;
-      transition: all 0.15s ease;
     }
-    .btn-secondary { background: #334155; color: var(--text-main); }
-    .btn-secondary:hover { background: #475569; }
-    .btn-primary { background: var(--accent-gold); color: #000; box-shadow: 0 4px 14px rgba(234, 179, 8, 0.3); }
-    .btn-primary:hover { background: var(--gold-hover); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-muted { background: #334155; color: #fff; }
+    .btn-gold { background: var(--gold-bright); color: #000; }
+    .btn-ace { background: #10b981; color: #022c22; }
+
+    /* Chase the Ace Progressive Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.86);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .ace-modal {
+      background: #0f172a;
+      border: 2px solid var(--winna-gold);
+      border-radius: 16px;
+      max-width: 620px;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+    }
+    .ace-modal h3 { color: var(--gold-bright); margin-bottom: 6px; }
+    .ace-modal p { font-size: 0.85rem; color: var(--muted); margin-bottom: 14px; }
+    .ace-deck-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+      gap: 8px;
+      max-height: 290px;
+      overflow-y: auto;
+      margin-bottom: 14px;
+      padding: 6px;
+    }
+    .ace-card-btn {
+      height: 82px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.12s;
+    }
+    .ace-card-btn:hover:not(.eliminated) { transform: translateY(-2px); border-color: var(--gold-bright); }
+    .ace-card-btn.eliminated {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: default;
+      box-shadow: none;
+    }
   </style>
 </head>
 <body>
 
-<div class="casino-app">
-  <!-- Nav Header -->
-  <header class="nav-header">
-    <div class="brand-logo">207<span>GAMES</span> CASINO</div>
-    <div class="jackpot-pill">
-      <div class="jackpot-label">Progressive Jackpot</div>
-      <div class="jackpot-val" id="jackpotVal">$1,250,480.00</div>
-    </div>
-  </header>
+<!-- Reusable Vector Crest matching the Winna Crown & Maple Leaf Coin Logo -->
+<svg width="0" height="0" style="position:absolute; visibility:hidden;" aria-hidden="true">
+  <defs>
+    <g id="winna-crown-crest">
+      <!-- Gold Maple Leaf Coin at Crown Peak -->
+      <circle cx="50" cy="18" r="11" fill="#eab308" stroke="#926815" stroke-width="1.5"/>
+      <circle cx="50" cy="18" r="8.8" fill="none" stroke="#fef08a" stroke-width="0.8"/>
+      <!-- Stylized Maple Leaf inside Coin -->
+      <path d="M50 11 L51.8 14.8 L55.5 14 L53.5 17.2 L56.2 18.8 L52.5 20.2 L52.8 22.2 L50.7 21.5 L50.7 25 L49.3 25 L49.3 21.5 L47.2 22.2 L47.5 20.2 L43.8 18.8 L46.5 17.2 L44.5 14 L48.2 14.8 Z" fill="#926815"/>
+      <!-- Crown Tip Spheres -->
+      <circle cx="16" cy="27" r="4.8" fill="#b08d44"/>
+      <circle cx="84" cy="27" r="4.8" fill="#b08d44"/>
+      <!-- Crown Body -->
+      <path d="M16 30 Q33 44 50 26 Q67 44 84 30 L77 56 L23 56 Z" fill="#b08d44"/>
+      <!-- Crown Base Band -->
+      <rect x="23" y="60" width="54" height="7.5" rx="3.5" fill="#b08d44"/>
+    </g>
+  </defs>
+</svg>
 
-  <!-- Account Bar -->
-  <section class="account-bar">
-    <div class="stat-item">
-      <span class="stat-label">BALANCE:</span>
-      <span class="stat-value gold" id="balanceVal">$1,000.00</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-label">TOTAL STAKE:</span>
-      <span class="stat-value" id="stakeVal">$0.00</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-label">LAST WIN:</span>
-      <span class="stat-value gold" id="winVal">$0.00</span>
-    </div>
-  </section>
-
-  <!-- Gaming Surface -->
-  <main class="felt-table">
-    <div class="dealer-stage">
-      <div class="card-slot" id="cardSlot">?</div>
-      <div class="game-message" id="gameMsg">PLACE YOUR BETS</div>
-    </div>
-
-    <!-- Roulette Grid -->
-    <div class="betting-grid">
-      <!-- Zero Cell -->
-      <div class="grid-cell zero" onclick="placeBet('0')">0</div>
-
-      <!-- Numbers 1 to 36 Grid -->
-      <script>
-        const RED_NUMS = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
-        // Standard 3-row layout logic for Roulette
-        const rows = [[3,6,9,12,15,18,21,24,27,30,33,36],
-                      [2,5,8,11,14,17,20,23,26,29,32,35],
-                      [1,4,7,10,13,16,19,22,25,28,31,34]];
-        
-        rows.forEach(row => {
-          row.forEach(num => {
-            const isRed = RED_NUMS.includes(num);
-            const cls = isRed ? 'red-num' : 'blk-num';
-            document.write(`<div class="grid-cell ${cls}" id="cell-${num}" onclick="placeBet('${num}')">${num}</div>`);
-          });
-        });
-      </script>
-
-      <!-- Dozens Row -->
-      <div class="dozens-row">
-        <div class="grid-cell" id="cell-1ST12" onclick="placeBet('1ST12')">1st 12 (1-12)</div>
-        <div class="grid-cell" id="cell-2ND12" onclick="placeBet('2ND12')">2nd 12 (13-24)</div>
-        <div class="grid-cell" id="cell-3RD12" onclick="placeBet('3RD12')">3rd 12 (25-36)</div>
-      </div>
-
-      <!-- Outside Bets Row -->
-      <div class="outside-row">
-        <div class="grid-cell" id="cell-1-18" onclick="placeBet('1-18')">1-18</div>
-        <div class="grid-cell" id="cell-EVEN" onclick="placeBet('EVEN')">EVEN</div>
-        <div class="grid-cell red-num" id="cell-RED" onclick="placeBet('RED')">RED</div>
-        <div class="grid-cell blk-num" id="cell-BLACK" onclick="placeBet('BLACK')">BLACK</div>
-        <div class="grid-cell" id="cell-ODD" onclick="placeBet('ODD')">ODD</div>
-        <div class="grid-cell" id="cell-19-36" onclick="placeBet('19-36')">19-36</div>
+<div class="app-shell">
+  <!-- Header -->
+  <div class="top-bar">
+    <div class="brand-lockup">
+      <svg width="38" height="28" viewBox="0 0 100 72" aria-label="Winna Games Crown Crest">
+        <use href="#winna-crown-crest"/>
+      </svg>
+      <div class="brand-text">
+        <span class="brand-title">WINNA</span>
+        <span class="brand-sub">GAMES</span>
       </div>
     </div>
-  </main>
 
-  <!-- Controls Footbar -->
-  <footer class="control-panel">
-    <div class="chip-selector">
-      <div class="chip-btn chip-5 selected" id="chip-5" onclick="selectChip(5)">$5</div>
-      <div class="chip-btn chip-25" id="chip-25" onclick="selectChip(25)">$25</div>
-      <div class="chip-btn chip-100" id="chip-100" onclick="selectChip(100)">$100</div>
-      <div class="chip-btn chip-500" id="chip-500" onclick="selectChip(500)">$500</div>
+    <div class="charity-select-box">
+      <label for="charitySelect">Beneficiary (40% Net):</label>
+      <select id="charitySelect" onchange="updateMeters()">
+        <option value="Dominion Vol. Fire Dept">Dominion Vol. Fire Dept</option>
+        <option value="Royal Canadian Legion">Royal Canadian Legion</option>
+        <option value="Cape Breton Senior Care">Cape Breton Senior Care</option>
+      </select>
     </div>
 
-    <div class="action-buttons">
-      <button class="btn btn-secondary" onclick="clearBets()">CLEAR</button>
-      <button class="btn btn-primary" onclick="dealCard()">DEAL CARD</button>
+    <div class="jackpot-box">
+      <div class="lbl">Pooled Chase the Ace Pot (30%)</div>
+      <div class="val" id="jackpotVal">$1,250,480.00</div>
     </div>
-  </footer>
+  </div>
+
+  <!-- Mode Switcher -->
+  <div class="mode-tabs">
+    <button class="mode-tab active" id="tab-DEALER" onclick="switchMode('DEALER')">1. DEALER FLIP</button>
+    <button class="mode-tab" id="tab-CAPTAIN" onclick="switchMode('CAPTAIN')">2. TABLE CAPTAIN</button>
+    <button class="mode-tab" id="tab-WHEEL" onclick="switchMode('WHEEL')">3. ACTUAL ROULETTE</button>
+  </div>
+
+  <!-- Account & Clearinghouse Strip -->
+  <div class="stats-bar">
+    <div class="stat"><span class="lbl">WALLET:</span><span class="val gold" id="balanceVal">$1,000.00</span></div>
+    <div class="stat"><span class="lbl">STAKE:</span><span class="val" id="stakeVal">$0.00</span></div>
+    <div class="stat"><span class="lbl">CHARITY RAISED:</span><span class="val green" id="charityRaisedVal">$0.00</span></div>
+    <div class="stat"><span class="lbl">LAST WIN:</span><span class="val gold" id="winVal">$0.00</span></div>
+  </div>
+
+  <!-- Felt Table -->
+  <div class="felt-stage">
+    <div class="stage-display">
+      <!-- View 1: Dealer Flip -->
+      <div id="view-DEALER">
+        <div class="dealer-card winna-card-back" id="dealerCard"></div>
+      </div>
+
+      <!-- View 2: Table Captain -->
+      <div id="view-CAPTAIN" style="display:none; width:100%; flex-direction:column; align-items:center; gap:10px;">
+        <div class="captain-badge" id="captainBadge">★ YOU ARE TABLE CAPTAIN — PLACE BETS THEN PICK A CARD</div>
+        <div class="captain-spread" id="captainSpread"></div>
+      </div>
+
+      <!-- View 3: Actual Roulette -->
+      <div id="view-WHEEL" style="display:none;">
+        <div class="wheel-wrap">
+          <div class="wheel-pointer"></div>
+          <canvas id="wheelCanvas" width="240" height="240"></canvas>
+        </div>
+      </div>
+
+      <div class="status-msg" id="statusMsg">SELECT CHIPS &amp; PLACE BETS</div>
+    </div>
+
+    <!-- Betting Layout -->
+    <div class="bet-grid" id="betGrid"></div>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls-bar">
+    <div class="chips">
+      <div class="chip ch-5 selected" id="chip-5" onclick="selectChip(5)">$5</div>
+      <div class="chip ch-25" id="chip-25" onclick="selectChip(25)">$25</div>
+      <div class="chip ch-100" id="chip-100" onclick="selectChip(100)">$100</div>
+      <div class="chip ch-500" id="chip-500" onclick="selectChip(500)">$500</div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-muted" id="btnClear" onclick="clearBets()">CLEAR</button>
+      <button class="btn btn-muted" id="btnRebet" onclick="rebet()">REBET</button>
+      <button class="btn btn-ace" onclick="openAceModal()">CHASE THE ACE (<span id="aceCountBadge">12</span> LEFT)</button>
+      <button class="btn btn-gold" id="btnPlay" onclick="triggerRound()">DEAL CARD</button>
+    </div>
+  </div>
+</div>
+
+<!-- Chase the Ace Progressive Modal -->
+<div class="modal-backdrop" id="aceModal">
+  <div class="ace-modal">
+    <h3>WINNA GAMES — CHASE THE ACE PROGRESSIVE DRAW</h3>
+    <p id="aceModalDesc">Bonus Draw Unlocked! Peel a remaining Winna card to hunt the Ace of Spades for the progressive jackpot, or win the 20% consolation prize.</p>
+    <div class="ace-deck-grid" id="aceDeckGrid"></div>
+    <button class="btn btn-muted" onclick="closeAceModal()">RETURN TO TABLE</button>
+  </div>
 </div>
 
 <script>
-  // Safe Audio Synthesizer (Will never crash or freeze execution)
+  // --- 1. DECK & WHEEL DATA (38 OUTCOMES: 0, 1-36, WINNA BONUS) ---
+  const RED_NUMS = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
+  const OUTCOMES = [
+    { id: '0', num: 0, color: 'GREEN', label: '0♠', wheelLabel: '0' },
+    { id: 'WINNA', num: -1, color: 'GOLD', label: 'WINNA★', wheelLabel: 'WINNA' }
+  ];
+  for (let i = 1; i <= 36; i++) {
+    const isRed = RED_NUMS.includes(i);
+    OUTCOMES.push({
+      id: String(i),
+      num: i,
+      color: isRed ? 'RED' : 'BLACK',
+      label: `${i}${isRed ? '♥' : '♠'}`,
+      wheelLabel: String(i)
+    });
+  }
+
+  // Helper to render Winna Crown + Maple Leaf Coin Card Back HTML
+  function getCardBackHTML(size = 'md', slotTag = '') {
+    const dims = size === 'lg'
+      ? { w: 58, h: 42, titleSize: '0.88rem', subSize: '0.46rem' }
+      : { w: 36, h: 26, titleSize: '0.58rem', subSize: '0.32rem' };
+
+    return `
+      <svg width="${dims.w}" height="${dims.h}" viewBox="0 0 100 72" aria-hidden="true">
+        <use href="#winna-crown-crest"/>
+      </svg>
+      <div class="card-back-title" style="font-size:${dims.titleSize};">WINNA</div>
+      <div class="card-back-sub" style="font-size:${dims.subSize};">GAMES</div>
+      ${slotTag ? `<span class="pick-slot-num">${slotTag}</span>` : ''}
+    `;
+  }
+
+  // --- 2. APPLICATION STATE ---
+  let currentMode = 'DEALER'; // DEALER | CAPTAIN | WHEEL
+  let balance = 1000;
+  let activeChip = 5;
+  let activeBets = {};
+  let lastBets = {};
+  let jackpot = 1250480.00;
+  let charityRaised = 0;
+  let isBusy = false;
+  let awaitingCaptainPick = false;
+  let wheelAngle = 0;
+
+  // Shrinking Chase the Ace Deck (12 cards remaining)
+  let aceDeck = [
+    { label: 'A♠', isAce: true, picked: false },
+    { label: 'K♥', isAce: false, picked: false },
+    { label: '9♣', isAce: false, picked: false },
+    { label: '4♦', isAce: false, picked: false },
+    { label: 'J♠', isAce: false, picked: false },
+    { label: '7♥', isAce: false, picked: false },
+    { label: '2♣', isAce: false, picked: false },
+    { label: 'Q♦', isAce: false, picked: false },
+    { label: '10♠', isAce: false, picked: false },
+    { label: '6♥', isAce: false, picked: false },
+    { label: '3♣', isAce: false, picked: false },
+    { label: '8♦', isAce: false, picked: false }
+  ].sort(() => Math.random() - 0.5);
+
+  // --- 3. SAFE AUDIO ---
   let audioCtx = null;
-  function safePlaySound(freq, duration) {
+  function beep(freq, dur) {
     try {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -342,156 +637,569 @@
       const gain = audioCtx.createGain();
       osc.connect(gain); gain.connect(audioCtx.destination);
       osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-      gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-      osc.start(); osc.stop(audioCtx.currentTime + duration);
-    } catch(e) { /* ignore audio fallback */ }
+      gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+      osc.start(); osc.stop(audioCtx.currentTime + dur);
+    } catch (e) {}
   }
 
-  // State
-  let balance = 1000;
-  let activeChip = 5;
-  let activeBets = {}; // betKey -> amount
-  let jackpot = 1250480.00;
+  // --- 4. BUILD DOM CLEANLY ---
+  function initBoard() {
+    const grid = document.getElementById('betGrid');
 
-  // Deck
-  const deck = [{ num: 0, color: 'GREEN', label: '0♠' }];
-  for (let i = 1; i <= 36; i++) {
-    const isRed = RED_NUMS.includes(i);
-    const color = isRed ? 'RED' : 'BLACK';
-    const suit = isRed ? '♥' : '♠';
-    deck.push({ num: i, color, label: `${i}${suit}` });
+    // Left column: 0 and WINNA Bonus
+    const zeroCol = document.createElement('div');
+    zeroCol.className = 'zero-col';
+    zeroCol.innerHTML = `
+      <div class="cell c-zero" id="cell-0" onclick="placeBet('0')">0</div>
+      <div class="cell c-winna" id="cell-WINNA" onclick="placeBet('WINNA')">WINNA★</div>
+    `;
+    grid.appendChild(zeroCol);
+
+    // Numbers 1-36 in 3 rows
+    const rows = [
+      [3,6,9,12,15,18,21,24,27,30,33,36],
+      [2,5,8,11,14,17,20,23,26,29,32,35],
+      [1,4,7,10,13,16,19,22,25,28,31,34]
+    ];
+    rows.forEach(row => {
+      row.forEach(num => {
+        const cell = document.createElement('div');
+        cell.className = `cell ${RED_NUMS.includes(num) ? 'c-red' : 'c-blk'}`;
+        cell.id = `cell-${num}`;
+        cell.textContent = num;
+        cell.onclick = () => placeBet(String(num));
+        grid.appendChild(cell);
+      });
+    });
+
+    // Dozens
+    const dozensRow = document.createElement('div');
+    dozensRow.className = 'span-row-3';
+    [['1ST12','1st 12 (1-12)'], ['2ND12','2nd 12 (13-24)'], ['3RD12','3rd 12 (25-36)']].forEach(([k, txt]) => {
+      const c = document.createElement('div');
+      c.className = 'cell';
+      c.id = `cell-${k}`;
+      c.textContent = txt;
+      c.onclick = () => placeBet(k);
+      dozensRow.appendChild(c);
+    });
+    grid.appendChild(dozensRow);
+
+    // Outside bets
+    const outRow = document.createElement('div');
+    outRow.className = 'span-row-6';
+    [
+      ['1-18','1-18',''],
+      ['EVEN','EVEN',''],
+      ['RED','RED','c-red'],
+      ['BLACK','BLACK','c-blk'],
+      ['ODD','ODD',''],
+      ['19-36','19-36','']
+    ].forEach(([k, txt, cls]) => {
+      const c = document.createElement('div');
+      c.className = `cell ${cls}`;
+      c.id = `cell-${k}`;
+      c.textContent = txt;
+      c.onclick = () => placeBet(k);
+      outRow.appendChild(c);
+    });
+    grid.appendChild(outRow);
+
+    resetDealerCardBack();
+    renderCaptainSpread(false);
+    drawWheel(wheelAngle, null);
   }
 
-  // Ticking Jackpot
-  setInterval(() => {
-    jackpot += 0.08;
-    document.getElementById('jackpotVal').innerText = `$${jackpot.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-  }, 2000);
+  function resetDealerCardBack() {
+    const cardEl = document.getElementById('dealerCard');
+    cardEl.className = 'dealer-card winna-card-back';
+    cardEl.innerHTML = getCardBackHTML('lg');
+  }
 
+  // --- 5. MODE SWITCHING ---
+  function switchMode(mode) {
+    if (isBusy || awaitingCaptainPick) return;
+    currentMode = mode;
+    ['DEALER', 'CAPTAIN', 'WHEEL'].forEach(m => {
+      document.getElementById(`tab-${m}`).classList.toggle('active', m === mode);
+      document.getElementById(`view-${m}`).style.display = (m === mode) ? 'flex' : 'none';
+    });
+
+    const playBtn = document.getElementById('btnPlay');
+    if (mode === 'DEALER') {
+      playBtn.textContent = 'DEAL CARD';
+      resetDealerCardBack();
+      setStatus('DEALER FLIP MODE — PLACE YOUR BETS');
+    } else if (mode === 'CAPTAIN') {
+      playBtn.textContent = 'LOCK BETS & PICK';
+      renderCaptainSpread(false);
+      setStatus('TABLE CAPTAIN MODE — LOCK BETS THEN PICK A WINNA CARD');
+    } else {
+      playBtn.textContent = 'SPIN WHEEL';
+      drawWheel(wheelAngle, null);
+      setStatus('ACTUAL ROULETTE — PLACE BETS & SPIN');
+    }
+  }
+
+  // --- 6. BETTING & SECTION 207 CLEARINGHOUSE ---
   function selectChip(val) {
-    safePlaySound(600, 0.05);
+    beep(620, 0.04);
     activeChip = val;
     [5, 25, 100, 500].forEach(c => {
       document.getElementById(`chip-${c}`).classList.toggle('selected', c === val);
     });
   }
 
+  function getStake() {
+    return Object.values(activeBets).reduce((sum, v) => sum + v, 0);
+  }
+
   function placeBet(key) {
-    const currentTotalStake = Object.values(activeBets).reduce((a, b) => a + b, 0);
-    if (balance < currentTotalStake + activeChip) {
-      document.getElementById('gameMsg').innerText = 'INSUFFICIENT FUNDS FOR BET';
-      safePlaySound(200, 0.1);
+    if (isBusy || awaitingCaptainPick) return;
+    const currentStake = getStake();
+    if (balance < currentStake + activeChip) {
+      setStatus('INSUFFICIENT WALLET BALANCE');
+      beep(200, 0.1);
       return;
     }
-
-    safePlaySound(800, 0.05);
+    beep(780, 0.04);
     activeBets[key] = (activeBets[key] || 0) + activeChip;
-    updateUI();
+    updateMeters();
   }
 
   function clearBets() {
-    safePlaySound(300, 0.05);
+    if (isBusy || awaitingCaptainPick) return;
+    beep(320, 0.05);
     activeBets = {};
-    updateUI();
-    document.getElementById('gameMsg').innerText = 'BETS CLEARED';
+    updateMeters();
+    setStatus('BETS CLEARED');
   }
 
-  function updateUI() {
-    const totalStake = Object.values(activeBets).reduce((a, b) => a + b, 0);
-    document.getElementById('balanceVal').innerText = `$${(balance - totalStake).toFixed(2)}`;
-    document.getElementById('stakeVal').innerText = `$${totalStake.toFixed(2)}`;
+  function rebet() {
+    if (isBusy || awaitingCaptainPick) return;
+    const needed = Object.values(lastBets).reduce((a, b) => a + b, 0);
+    if (needed === 0 || balance < needed) return;
+    activeBets = { ...lastBets };
+    beep(700, 0.05);
+    updateMeters();
+    setStatus('PREVIOUS BETS RESTORED');
+  }
 
-    // Update grid highlights and badges
-    document.querySelectorAll('.grid-cell').forEach(cell => {
+  function updateMeters() {
+    const stake = getStake();
+    document.getElementById('balanceVal').textContent = `$${(balance - stake).toFixed(2)}`;
+    document.getElementById('stakeVal').textContent = `$${stake.toFixed(2)}`;
+    document.getElementById('charityRaisedVal').textContent = `$${charityRaised.toFixed(2)}`;
+    document.getElementById('jackpotVal').textContent = `$${jackpot.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+    document.querySelectorAll('.cell').forEach(cell => {
       cell.classList.remove('active');
-      const badge = cell.querySelector('.chip-badge');
-      if (badge) badge.remove();
+      const oldTag = cell.querySelector('.chip-tag');
+      if (oldTag) oldTag.remove();
     });
 
-    Object.keys(activeBets).forEach(key => {
-      const cell = document.getElementById(`cell-${key}`) || Array.from(document.querySelectorAll('.grid-cell')).find(c => c.innerText.trim().startsWith(key));
+    Object.keys(activeBets).forEach(k => {
+      const cell = document.getElementById(`cell-${k}`);
       if (cell) {
         cell.classList.add('active');
-        const badge = document.createElement('div');
-        badge.className = 'chip-badge';
-        badge.innerText = `$${activeBets[key]}`;
-        cell.appendChild(badge);
+        const tag = document.createElement('div');
+        tag.className = 'chip-tag';
+        tag.textContent = `$${activeBets[k]}`;
+        cell.appendChild(tag);
       }
     });
   }
 
-  function dealCard() {
-    const totalStake = Object.values(activeBets).reduce((a, b) => a + b, 0);
-    if (totalStake === 0) {
-      document.getElementById('gameMsg').innerText = 'PLACE AT LEAST ONE BET';
-      safePlaySound(200, 0.1);
+  function setStatus(msg) {
+    document.getElementById('statusMsg').textContent = msg;
+  }
+
+  function commitClearinghouseSplit(stake) {
+    // Section 207 Waterfall: 30% Progressive Jackpot, 40% Net Charity
+    jackpot += stake * 0.30;
+    charityRaised += stake * 0.40;
+    balance -= stake;
+    lastBets = { ...activeBets };
+    updateMeters();
+  }
+
+  // --- 7. ROUND EXECUTION ACROSS ALL 3 MODES ---
+  function triggerRound() {
+    if (isBusy || awaitingCaptainPick) return;
+    const stake = getStake();
+    if (stake === 0) {
+      setStatus('PLACE AT LEAST ONE CHIP ON THE BOARD');
+      beep(200, 0.1);
       return;
     }
 
-    balance -= totalStake;
-    document.getElementById('gameMsg').innerText = 'DEALER DRAWING...';
+    commitClearinghouseSplit(stake);
+    const winningOutcome = OUTCOMES[Math.floor(Math.random() * OUTCOMES.length)];
 
-    let spins = 0;
-    const slot = document.getElementById('cardSlot');
-    
-    const interval = setInterval(() => {
-      safePlaySound(400 + (spins * 30), 0.03);
-      const randCard = deck[Math.floor(Math.random() * deck.length)];
-      slot.className = `card-slot ${randCard.color.toLowerCase()}`;
-      slot.innerText = randCard.label;
-      spins++;
-
-      if (spins > 10) {
-        clearInterval(interval);
-        evaluateRound();
-      }
-    }, 60);
+    if (currentMode === 'DEALER') {
+      runDealerFlip(winningOutcome);
+    } else if (currentMode === 'CAPTAIN') {
+      startCaptainPick(winningOutcome);
+    } else {
+      runActualWheel(winningOutcome);
+    }
   }
 
-  function evaluateRound() {
-    const drawn = deck[Math.floor(Math.random() * deck.length)];
-    const slot = document.getElementById('cardSlot');
-    slot.className = `card-slot ${drawn.color.toLowerCase()}`;
-    slot.innerText = drawn.label;
+  // MODE 1: DEALER FLIP
+  function runDealerFlip(winningOutcome) {
+    isBusy = true;
+    setControlsDisabled(true);
+    setStatus('DEALER FLIPPING CARD...');
+    const cardEl = document.getElementById('dealerCard');
+    let step = 0;
 
-    let totalWin = 0;
+    const timer = setInterval(() => {
+      beep(380 + step * 35, 0.03);
+      if (step % 2 === 0) {
+        resetDealerCardBack();
+      } else {
+        const preview = OUTCOMES[Math.floor(Math.random() * OUTCOMES.length)];
+        cardEl.className = `dealer-card ${preview.color.toLowerCase()}`;
+        cardEl.textContent = preview.label;
+      }
+      step++;
+      if (step >= 10) {
+        clearInterval(timer);
+        cardEl.className = `dealer-card ${winningOutcome.color.toLowerCase()}`;
+        cardEl.textContent = winningOutcome.label;
+        settleBets(winningOutcome);
+      }
+    }, 65);
+  }
+
+  // MODE 2: TABLE CAPTAIN PICK
+  let pendingCaptainOutcome = null;
+  function renderCaptainSpread(interactive) {
+    const spread = document.getElementById('captainSpread');
+    spread.innerHTML = '';
+    for (let i = 0; i < 12; i++) {
+      const btn = document.createElement('div');
+      btn.className = 'pick-card winna-card-back';
+      btn.innerHTML = getCardBackHTML('sm', interactive ? `#${i + 1}` : '');
+      if (interactive) {
+        btn.onclick = () => resolveCaptainPick(i);
+      }
+      spread.appendChild(btn);
+    }
+  }
+
+  function startCaptainPick(winningOutcome) {
+    awaitingCaptainPick = true;
+    pendingCaptainOutcome = winningOutcome;
+    setControlsDisabled(true);
+    renderCaptainSpread(true);
+    setStatus('TABLE CAPTAIN: TAP ANY FACE-DOWN WINNA CARD TO FLIP!');
+  }
+
+  function resolveCaptainPick(pickedIdx) {
+    if (!awaitingCaptainPick) return;
+    awaitingCaptainPick = false;
+    isBusy = true;
+    beep(850, 0.12);
+
+    const cards = document.querySelectorAll('#captainSpread .pick-card');
+    cards.forEach((el, idx) => {
+      el.onclick = null;
+      const item = (idx === pickedIdx)
+        ? pendingCaptainOutcome
+        : OUTCOMES[Math.floor(Math.random() * OUTCOMES.length)];
+      el.className = `pick-card revealed-${item.color.toLowerCase()}`;
+      el.textContent = item.label;
+      if (idx === pickedIdx) {
+        el.style.transform = 'scale(1.12)';
+        el.style.boxShadow = '0 0 14px #fbbf24';
+      }
+    });
+
+    setTimeout(() => {
+      settleBets(pendingCaptainOutcome);
+    }, 450);
+  }
+
+  // MODE 3: ACTUAL SPINNING ROULETTE WHEEL WITH WINNA LOGO HUB
+  function drawWheelHub(ctx, cx, cy) {
+    // Outer antique gold bezel ring
+    ctx.beginPath();
+    ctx.arc(cx, cy, 48, 0, 2 * Math.PI);
+    ctx.fillStyle = '#f3f4f6';
+    ctx.fill();
+    ctx.strokeStyle = '#b08d44';
+    ctx.lineWidth = 3.5;
+    ctx.stroke();
+
+    // Inner subtle ring
+    ctx.beginPath();
+    ctx.arc(cx, cy, 43, 0, 2 * Math.PI);
+    ctx.strokeStyle = 'rgba(8, 66, 27, 0.25)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Crown Base Bar
+    ctx.fillStyle = '#b08d44';
+    ctx.beginPath();
+    if (ctx.roundRect) {
+      ctx.roundRect(cx - 17, cy - 6, 34, 4.5, 2);
+    } else {
+      ctx.rect(cx - 17, cy - 6, 34, 4.5);
+    }
+    ctx.fill();
+
+    // Crown Body (3-point silhouette matching Winna logo)
+    ctx.beginPath();
+    ctx.moveTo(cx - 21, cy - 23);
+    ctx.quadraticCurveTo(cx - 11, cy - 15, cx, cy - 25);
+    ctx.quadraticCurveTo(cx + 11, cy - 15, cx + 21, cy - 23);
+    ctx.lineTo(cx + 17, cy - 8.5);
+    ctx.lineTo(cx - 17, cy - 8.5);
+    ctx.closePath();
+    ctx.fillStyle = '#b08d44';
+    ctx.fill();
+
+    // Left & Right Crown Tip Balls
+    ctx.beginPath();
+    ctx.arc(cx - 21, cy - 24.5, 3, 0, 2 * Math.PI);
+    ctx.arc(cx + 21, cy - 24.5, 3, 0, 2 * Math.PI);
+    ctx.fillStyle = '#b08d44';
+    ctx.fill();
+
+    // Gold Canadian Maple Leaf Coin at Crown Peak
+    ctx.beginPath();
+    ctx.arc(cx, cy - 29, 6.8, 0, 2 * Math.PI);
+    ctx.fillStyle = '#eab308';
+    ctx.fill();
+    ctx.strokeStyle = '#926815';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Inner Maple Leaf Silhouette inside Coin
+    ctx.fillStyle = '#926815';
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - 33.5);
+    ctx.lineTo(cx + 2.5, cy - 29.5);
+    ctx.lineTo(cx + 1.2, cy - 28.5);
+    ctx.lineTo(cx + 1.2, cy - 25.5);
+    ctx.lineTo(cx - 1.2, cy - 25.5);
+    ctx.lineTo(cx - 1.2, cy - 28.5);
+    ctx.lineTo(cx - 2.5, cy - 29.5);
+    ctx.closePath();
+    ctx.fill();
+
+    // "WINNA" & "GAMES" Serif Typography in Deep Forest Green
+    ctx.fillStyle = '#08421b';
+    ctx.textAlign = 'center';
+    ctx.font = 'bold 14px Georgia, "Times New Roman", serif';
+    ctx.fillText('WINNA', cx, cy + 10);
+
+    ctx.font = 'bold 6.5px Georgia, "Times New Roman", serif';
+    ctx.fillText('G A M E S', cx, cy + 20);
+  }
+
+  function drawWheel(rotation, ballAngle) {
+    const canvas = document.getElementById('wheelCanvas');
+    const ctx = canvas.getContext('2d');
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+    const radius = 114;
+    const slice = (2 * Math.PI) / OUTCOMES.length;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    OUTCOMES.forEach((item, i) => {
+      const start = rotation + i * slice;
+      const end = start + slice;
+
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, radius, start, end);
+      ctx.closePath();
+
+      if (item.color === 'RED') ctx.fillStyle = '#dc2626';
+      else if (item.color === 'BLACK') ctx.fillStyle = '#0f172a';
+      else if (item.color === 'GREEN') ctx.fillStyle = '#16a34a';
+      else ctx.fillStyle = '#d97706';
+
+      ctx.fill();
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Pocket label
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(start + slice / 2);
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#fff';
+      ctx.font = item.id === 'WINNA' ? 'bold 7px sans-serif' : 'bold 8px sans-serif';
+      ctx.fillText(item.wheelLabel, radius - 6, 3);
+      ctx.restore();
+    });
+
+    // Render Winna Games Logo Medallion in Wheel Center
+    drawWheelHub(ctx, cx, cy);
+
+    // Ball
+    if (ballAngle !== null) {
+      const bx = cx + Math.cos(ballAngle) * (radius - 18);
+      const by = cy + Math.sin(ballAngle) * (radius - 18);
+      ctx.beginPath();
+      ctx.arc(bx, by, 5, 0, 2 * Math.PI);
+      ctx.fillStyle = '#ffffff';
+      ctx.fill();
+      ctx.strokeStyle = '#0f172a';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+
+  function runActualWheel(winningOutcome) {
+    isBusy = true;
+    setControlsDisabled(true);
+    setStatus('WHEEL SPINNING — NO MORE BETS');
+
+    const winIdx = OUTCOMES.findIndex(o => o.id === winningOutcome.id);
+    const slice = (2 * Math.PI) / OUTCOMES.length;
+    const pointerAngle = -Math.PI / 2;
+
+    const targetMod = pointerAngle - (winIdx + 0.5) * slice;
+    const fullSpins = 5 * 2 * Math.PI;
+    const startWheel = wheelAngle;
+    const delta = fullSpins + ((targetMod - (startWheel % (2 * Math.PI)) + 4 * Math.PI) % (2 * Math.PI));
+
+    const duration = 2200;
+    const startTime = performance.now();
+
+    function animate(now) {
+      const elapsed = now - startTime;
+      const t = Math.min(elapsed / duration, 1);
+      const easeOut = 1 - Math.pow(1 - t, 3);
+
+      wheelAngle = startWheel + delta * easeOut;
+      const ballAngle = pointerAngle - (1 - easeOut) * 6 * Math.PI;
+      drawWheel(wheelAngle, ballAngle);
+
+      if (t < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        settleBets(winningOutcome);
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  // --- 8. PAYOUT EVALUATION & WINNA BONUS TRIGGER ---
+  function settleBets(drawn) {
+    let payout = 0;
 
     Object.keys(activeBets).forEach(key => {
-      const betAmt = activeBets[key];
+      const amt = activeBets[key];
       let won = false;
       let ratio = 0;
 
       if (key === 'RED' && drawn.color === 'RED') { won = true; ratio = 1; }
       else if (key === 'BLACK' && drawn.color === 'BLACK') { won = true; ratio = 1; }
-      else if (key === 'EVEN' && drawn.num !== 0 && drawn.num % 2 === 0) { won = true; ratio = 1; }
-      else if (key === 'ODD' && drawn.num % 2 !== 0) { won = true; ratio = 1; }
+      else if (key === 'EVEN' && drawn.num >= 1 && drawn.num % 2 === 0) { won = true; ratio = 1; }
+      else if (key === 'ODD' && drawn.num >= 1 && drawn.num % 2 !== 0) { won = true; ratio = 1; }
       else if (key === '1-18' && drawn.num >= 1 && drawn.num <= 18) { won = true; ratio = 1; }
       else if (key === '19-36' && drawn.num >= 19 && drawn.num <= 36) { won = true; ratio = 1; }
       else if (key === '1ST12' && drawn.num >= 1 && drawn.num <= 12) { won = true; ratio = 2; }
       else if (key === '2ND12' && drawn.num >= 13 && drawn.num <= 24) { won = true; ratio = 2; }
       else if (key === '3RD12' && drawn.num >= 25 && drawn.num <= 36) { won = true; ratio = 2; }
-      else if (parseInt(key) === drawn.num) { won = true; ratio = 35; }
+      else if (key === drawn.id) { won = true; ratio = 35; }
 
-      if (won) {
-        totalWin += betAmt + (betAmt * ratio);
-      }
+      if (won) payout += amt + (amt * ratio);
     });
 
-    balance += totalWin;
-    document.getElementById('winVal').innerText = `$${totalWin.toFixed(2)}`;
-    
-    if (totalWin > 0) {
-      document.getElementById('gameMsg').innerText = `WINNER! YOU WON $${totalWin.toFixed(2)}`;
-      safePlaySound(900, 0.25);
+    balance += payout;
+    document.getElementById('winVal').textContent = `$${payout.toFixed(2)}`;
+
+    if (drawn.id === 'WINNA') {
+      beep(980, 0.35);
+      setStatus('★ WINNA BONUS HIT! CHASE THE ACE PROGRESSIVE DRAW UNLOCKED! ★');
+      setTimeout(() => openAceModal(), 700);
+    } else if (payout > 0) {
+      beep(880, 0.25);
+      setStatus(`RESULT: ${drawn.label} — YOU WON $${payout.toFixed(2)}!`);
     } else {
-      document.getElementById('gameMsg').innerText = `DRAW: ${drawn.label} - NO WIN`;
-      safePlaySound(180, 0.15);
+      beep(190, 0.15);
+      setStatus(`RESULT: ${drawn.label} — 40% CREDITED TO ${document.getElementById('charitySelect').value.toUpperCase()}`);
     }
 
     activeBets = {};
-    updateUI();
+    updateMeters();
+    isBusy = false;
+    setControlsDisabled(false);
   }
+
+  function setControlsDisabled(disabled) {
+    ['btnClear', 'btnRebet', 'btnPlay'].forEach(id => {
+      document.getElementById(id).disabled = disabled;
+    });
+  }
+
+  // --- 9. CHASE THE ACE PROGRESSIVE MODAL ---
+  function openAceModal() {
+    renderAceDeck();
+    document.getElementById('aceModal').classList.add('open');
+  }
+
+  function closeAceModal() {
+    document.getElementById('aceModal').classList.remove('open');
+  }
+
+  function renderAceDeck() {
+    const grid = document.getElementById('aceDeckGrid');
+    grid.innerHTML = '';
+    const remaining = aceDeck.filter(c => !c.picked).length;
+    document.getElementById('aceCountBadge').textContent = remaining;
+
+    aceDeck.forEach((card, idx) => {
+      const btn = document.createElement('button');
+      if (card.picked) {
+        btn.className = 'ace-card-btn eliminated';
+        btn.textContent = card.label;
+      } else {
+        btn.className = 'ace-card-btn winna-card-back';
+        btn.innerHTML = getCardBackHTML('sm', `#${idx + 1}`);
+        btn.onclick = () => pickAceCard(idx);
+      }
+      grid.appendChild(btn);
+    });
+  }
+
+  function pickAceCard(idx) {
+    const card = aceDeck[idx];
+    if (card.picked) return;
+    card.picked = true;
+
+    if (card.isAce) {
+      beep(1046, 0.5);
+      const wonPot = jackpot;
+      balance += wonPot;
+      document.getElementById('aceModalDesc').innerHTML =
+        `<strong style="color:#4ade80;">ACE OF SPADES DRAWN! YOU WON THE $${wonPot.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} PROGRESSIVE JACKPOT!</strong>`;
+      jackpot = 50000.00;
+      aceDeck.forEach(c => c.picked = false);
+      aceDeck.sort(() => Math.random() - 0.5);
+    } else {
+      beep(520, 0.2);
+      const consolation = 250.00;
+      balance += consolation;
+      document.getElementById('aceModalDesc').innerHTML =
+        `Drawn: <strong>${card.label}</strong> (Eliminated from deck). You won the <strong>$${consolation.toFixed(2)} Consolation Prize</strong> and the progressive pot rolls over!`;
+    }
+
+    updateMeters();
+    renderAceDeck();
+  }
+
+  // Boot
+  initBoard();
 </script>
 </body>
 </html>
